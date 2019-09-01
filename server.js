@@ -17,23 +17,14 @@ const check=(data)=>{
 
 
 //connecting db to server with knex, heroku app
-/*const db=knex({
+const db=knex({
 	client:'pg',
 	connection:{
 		connectionString:process.env.DATABASE_URL,
 		ssl: true		
 	}
-});*/
-
-const db = knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : 'postgres',
-    password : 'aaaazz1989',
-    database : 'shareplace'
-  }
 });
+
 
 const app=express();
 app.use(bodyParser.json());
@@ -266,7 +257,7 @@ app.post('/forgot',(req,res)=>{
 							service: 'yahoo',		        
 							auth: {
 				            user: 'TestNodemailerYelcamp@yahoo.com', 
-				            pass: `XqPuZf3xWiXsGzv` 
+				            pass: `${process.env.email_pass} ` 
 				        }
 				    });	
 						let mailOptions = {
